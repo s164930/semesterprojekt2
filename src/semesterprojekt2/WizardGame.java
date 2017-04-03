@@ -5,6 +5,7 @@
  */
 package semesterprojekt2;
 
+import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -13,6 +14,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -26,9 +28,9 @@ public class WizardGame extends BasicGame {
     private TiledMap grassMap;
     private Animation sprite, up, down, left, right;
     private float x = 34f, y=34f;
-    private boolean[][] blocked;
-    private static final int SIZE = 34;
-
+    private Rectangle[][] blocked;
+    private ArrayList<Rectangle> blocks;
+    private int PLAYERWIDTH = 24, PLAYERHEIGHT = 30;
 
     
     public WizardGame(){
@@ -58,6 +60,17 @@ public class WizardGame extends BasicGame {
         left = new Animation(movementLeft, duration, false);
         right = new Animation(movementRight, duration, false);
         sprite = right;
+        blocked = new Rectangle[grassMap.getWidth()][grassMap.getHeight()];
+        for (int x = 0; x < grassMap.getWidth(); x++){
+            for (int y = 0; y < grassMap.getHeight(); y++){
+                int tileID = grassMap.getTileId(x,y,0);
+                if (17 == tileID){
+                    blocked[x][y] = new Rectangle(x*grassMap.getTileWidth(),y*grassMap.getTileHeight(),32,32);
+                } else {
+                    blocked[x][y] = new Rectangle(0,0,0,0);
+                }
+            }
+        }
     }
     
     @Override
@@ -99,6 +112,15 @@ public class WizardGame extends BasicGame {
     }
     
     private boolean blocked(float x, float y){
-        return blocked[(int)x][(int)y];
+        Rectangle player = new Rectangle(x,y,PLAYERWIDTH, PLAYERHEIGHT);
+        for (int i = 0; i < blocked.length; i++){
+            for (int j = 0; j < blocked.length; j++){
+                System.out.println(blocked[j][i].getX() + blocked[j][i].getY());
+                if (blocked[j][i].intersects(player)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

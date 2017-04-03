@@ -5,7 +5,7 @@
  </tileset>
  <tileset firstgid="17" name="Rocks" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <properties>
-   <property name="Blocked" type="bool" value="true"/>
+   <property name="blocked" type="bool" value="true"/>
   </properties>
   <image source="rocks.png" width="128" height="128"/>
  </tileset>
