@@ -29,7 +29,6 @@ public class WizardGame extends BasicGame {
     private Animation sprite, up, down, left, right;
     private float x = 34f, y=34f;
     private Rectangle[][] blocked;
-    private ArrayList<Rectangle> blocks;
     private int PLAYERWIDTH = 24, PLAYERHEIGHT = 30;
 
     
@@ -115,7 +114,6 @@ public class WizardGame extends BasicGame {
         Rectangle player = new Rectangle(x,y,PLAYERWIDTH, PLAYERHEIGHT);
         for (int i = 0; i < blocked.length; i++){
             for (int j = 0; j < blocked.length; j++){
-                System.out.println(blocked[j][i].getX() + blocked[j][i].getY());
                 if (blocked[j][i].intersects(player)){
                     return true;
                 }
