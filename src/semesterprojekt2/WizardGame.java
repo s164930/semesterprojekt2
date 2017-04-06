@@ -29,7 +29,6 @@ public class WizardGame extends BasicGame {
     private Animation sprite, up, down, left, right;
     private float x = 34f, y=34f;
     private Rectangle[][] blocked;
-    private ArrayList<Rectangle> blocks;
     private int PLAYERWIDTH = 24, PLAYERHEIGHT = 30;
 
     
@@ -49,11 +48,11 @@ public class WizardGame extends BasicGame {
     
     @Override
     public void init(GameContainer container) throws SlickException{
-        grassMap = new TiledMap("data/grassmap.tmx");
-        Image[] movementUp = {new Image("data/movingup1.png"), new Image("data/movingup2.png")};
-        Image[] movementDown = {new Image("data/movingdown1.png"), new Image("data/movingdown2.png")};
-        Image[] movementLeft = {new Image("data/movingleft1.png"), new Image("data/movingleft2.png")};
-        Image[] movementRight = {new Image("data/movingright1.png"), new Image("data/movingright2.png")};
+        grassMap = new TiledMap("data/img/tiles/grassmap/grassmap.tmx");
+        Image[] movementUp = {new Image("data/img/sprite_wizard/movingup1.png"), new Image("data/img/sprite_wizard/movingup2.png")};
+        Image[] movementDown = {new Image("data/img/sprite_wizard/movingdown1.png"), new Image("data/img/sprite_wizard/movingdown2.png")};
+        Image[] movementLeft = {new Image("data/img/sprite_wizard/movingleft1.png"), new Image("data/img/sprite_wizard/movingleft2.png")};
+        Image[] movementRight = {new Image("data/img/sprite_wizard/movingright1.png"), new Image("data/img/sprite_wizard/movingright2.png")};
         int[] duration = {300,300};
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
