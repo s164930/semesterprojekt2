@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="18" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="grassy_tileset" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" nextobjectid="1">
+ <properties>
+  <property name="background" value="grassy_field.png"/>
+ </properties>
+ <tileset firstgid="1" name="grassy_tileset" tilewidth="32" tileheight="32" tilecount="800" columns="20">
   <image source="../img/tilesets/grassy_tileset/grassy_tileset.png" width="640" height="1280"/>
   <tile id="0">
    <properties>
@@ -8,9 +11,9 @@
    </properties>
   </tile>
  </tileset>
- <layer name="CollisionLayer" width="32" height="18">
+ <layer name="CollisionLayer" width="50" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NmYGBgHsWjeAAxNxBz0Rkj288BxIx0xuzD1H7eAbafhc72o/uX3vaj20dr+wn5l1b28xJpHzn2swExEwHMg0aji+Pi48IDXeaOYggGAMc/dXUACQAA
+   H4sIAAAAAAAAC+2W3QqAIAxGl0p/1vu/bl4kyJhskpCrXRzEL5EdQZcHAG8YxueJiV0pW+GxJialLOYxFOYxFn/3ODvW4AT09sj1B5Rz85a9MAGt5zxmwbkcaMR5bd6yF7eO89DCVz0c4fH2fxJHJByevFcjUN4VrR74vmv0oN6skT1ONNYcJB5c3659p3JplgnFGG4HEHh4qPcgrkdJcmlG9T+ujrd7QW8uBW43hIgTAAA=
   </data>
  </layer>
 </map>

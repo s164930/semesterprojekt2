@@ -35,12 +35,12 @@ public abstract class Character extends LevelObject {
     }
     
     
-    public void render(){
+    public void render(float offset_x, float offset_y){
         // updaterer kun sprite når man bevæger sig
         if(movingAnimations != null && moving){
-            movingAnimations.get(facing).draw(x-2,y-2);
+            movingAnimations.get(facing).draw(x-2-offset_x, y-2-offset_y);
         } else{
-            sprites.get(facing).draw(x-2,y-2);
+            sprites.get(facing).draw(x-2-offset_x, y-2-offset_y);
         }
         
     }

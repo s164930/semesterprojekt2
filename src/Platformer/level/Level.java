@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import Platformer.character.Character;
+import Platformer.character.Player;
 import Platformer.level.tile.AirTile;
 import Platformer.level.tile.SolidTile;
 import Platformer.level.tile.Tile;
+import Platformer.PlatformerGame;
 /**
  *
  * @author vikto
@@ -23,11 +25,14 @@ public class Level {
     private Tile[][] tiles;
     
     private ArrayList<Character> characters;
+    private Player player;
     
-    public Level(String level) throws SlickException{
+    
+    public Level(String level, Player player) throws SlickException{
         map = new TiledMap("data/levels/" + level + ".tmx", "data/img/");
         characters = new ArrayList<Character>();
-        
+        this.player = player;
+        addCharacter(player);
         loadTileMap();
     }
     
@@ -44,10 +49,13 @@ public class Level {
     }
     
     public void render(){
-        map.render(0,0,0,0,32,18);
+        int offset_x = getXOffset();
+        int offset_y = getYOffset();
+        // vi tegner en del udefra mappet til at starte med, fordi map.render ikke kan tegne pixels, men tiles.
+        map.render(-(offset_x%32),-(offset_y%32), offset_x/32, offset_y/32 ,33,19);
         
         for(Character c : characters){
-            c.render();
+            c.render(offset_x, offset_y);
         }
     }
     
@@ -78,5 +86,55 @@ public class Level {
                 tiles[x][y] = tile;
             }
         }
+    }
+    
+    public int getXOffset(){
+        int offset_x = 0;
+        
+        // først findes halvdelen af skærmen for at se om spilleren er lige i midten
+        int half_width = (int) (PlatformerGame.WINDOW_WIDTH/PlatformerGame.SCALE/2);
+        
+        // så kommer max offset, som er højre del af skærmen minus halvedelen af skærmen
+        int maxX = (int) (map.getWidth()*32)-half_width;
+        
+        /*
+        så har vi tre cases:
+        1. spilleren kan endten være så langt til venstre at vi ikke skal rykke skærmen mere
+        for ikke at tegne noget på skærmen som ikke er i mappet
+        2. spilleren er langt til højre og samme regelsæt gælder
+        3. spilleren er i midten af mappet og dermed er der ikke nogen kant han kan ramme
+        */
+        if(player.getX() < half_width){
+            // spilleren er i den venstre del af mappet
+            offset_x = 0;
+        } else if (player.getX() > maxX){
+            // spilleren er i den højre del af mappet, og derfor skal vi trække halvedelen af skærmen fra, da skærmen starter i øverste venstre hjørne
+            offset_x = maxX-half_width;
+        } else {
+            // spilleren er imellem de to punkter, og derfor sætter vi offsettet til spilleren selv, og trækker halvdelen af skærmen fra.
+            offset_x = (int) (player.getX()-half_width);
+        }
+        
+        return offset_x;
+    }
+    
+    // det samme gælder for vertikal bevægelse
+    
+    public int getYOffset(){
+        int offset_y = 0;
+        
+        int half_height = (int) (PlatformerGame.WINDOW_HEIGHT/PlatformerGame.SCALE/2);
+        
+        int maxY = (int) (map.getHeight()*32)-half_height;
+        
+        if(player.getY() < half_height){
+            offset_y = 0;
+        }else if(player.getY() > maxY){
+            offset_y = maxY-half_height;
+        }else{
+            offset_y = (int) (player.getY()-half_height);
+        }
+        
+        return offset_y;
     }
 }
