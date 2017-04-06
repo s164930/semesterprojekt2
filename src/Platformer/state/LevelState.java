@@ -39,7 +39,7 @@ public class LevelState extends BasicGameState{
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
         level = new Level(startingLevel);
         
-        player = new Player(128, 416);
+        player = new Player(128, 415);
         level.addCharacter(player);
         
         playerController = new MouseAndKeyBoardPlayerController(player);

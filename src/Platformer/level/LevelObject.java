@@ -50,6 +50,10 @@ public abstract class LevelObject {
         x_velocity = f;
     }
     
+    public void setYVelocity(float f){
+        y_velocity = f;
+    }
+    
     public float getX(){
         return x;
     }

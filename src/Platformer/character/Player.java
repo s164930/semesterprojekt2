@@ -23,7 +23,7 @@ public class Player extends Character {
         setMovingAnimation(new Image[]{new Image("data/img/sprite_platformer/movingright1.png"), 
                            new Image("data/img/sprite_platformer/movingright2.png")}, 125);
         
-        boundingShape = new AABoundingRect(x+3, y, 26, 32);
+        boundingShape = new AABoundingRect(x, y+2, 26, 32);
         
         accelerationSpeed = 0.001f;
         maximumSpeed = 0.15f;
@@ -32,6 +32,6 @@ public class Player extends Character {
     }
 
     public void updateBoundingShape(){
-        boundingShape.updatePosition(x+3, y);
+        boundingShape.updatePosition(x, y);
     }
 }
