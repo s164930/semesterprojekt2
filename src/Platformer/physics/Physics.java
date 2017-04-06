@@ -5,11 +5,14 @@
  */
 package Platformer.physics;
 
+import Platformer.PlatformerGame;
 import Platformer.level.Level;
 import Platformer.level.LevelObject;
 import Platformer.level.tile.Tile;
 import java.util.ArrayList;
 import Platformer.character.Character;
+import Platformer.character.Player;
+import Platformer.level.Objective;
 
 /**
  *
@@ -18,8 +21,9 @@ import Platformer.character.Character;
 public class Physics {
     private final float gravity = 0.0015f;
     
-    public void handePhysics(Level level, int delta){
+    public void handlePhysics(Level level, int delta){
         handleCharacters(level,delta);
+        handleLevelObjects(level, delta);
     }
     
     private boolean checkCollision(LevelObject obj, Tile[][] mapTiles){
@@ -62,6 +66,26 @@ public class Physics {
             }
             handleGameObject(c,level,delta);
             
+            if(c instanceof Player){
+                ArrayList<LevelObject> removeQueue = new ArrayList<LevelObject>();
+                
+                for(LevelObject obj : level.getLevelObjects()){
+                    
+                    if(obj instanceof Objective){
+                        if(obj.getBoundingShape().checkCollision(c.getBoundingShape())){
+                            PlatformerGame.SCRAPS_COLLECTED++;
+                            removeQueue.add(obj);
+                        }
+                    }
+                }
+                level.removeObjects(removeQueue);
+            }
+        }
+    }
+    
+    private void handleLevelObjects(Level level, int delta){
+        for(LevelObject obj : level.getLevelObjects()){
+            handleGameObject(obj, level, delta);
         }
     }
     

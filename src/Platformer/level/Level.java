@@ -14,6 +14,7 @@ import Platformer.level.tile.AirTile;
 import Platformer.level.tile.SolidTile;
 import Platformer.level.tile.Tile;
 import Platformer.PlatformerGame;
+import org.newdawn.slick.Image;
 /**
  *
  * @author vikto
@@ -24,16 +25,25 @@ public class Level {
     
     private Tile[][] tiles;
     
+    private ArrayList<LevelObject> levelObjects;
     private ArrayList<Character> characters;
     private Player player;
+    
+    private Image background;
     
     
     public Level(String level, Player player) throws SlickException{
         map = new TiledMap("data/levels/" + level + ".tmx", "data/img/");
         characters = new ArrayList<Character>();
+        levelObjects = new ArrayList<LevelObject>();
         this.player = player;
         addCharacter(player);
+        background = new Image("data/img/backgrounds/" + map.getMapProperty("background", "grassy_field.png"));
         loadTileMap();
+    }
+    
+    public void addLevelObject(LevelObject obj){
+        levelObjects.add(obj);
     }
     
     public void addCharacter(Character c){
@@ -44,6 +54,10 @@ public class Level {
         return characters;
     }
     
+    public ArrayList<LevelObject> getLevelObjects(){
+        return levelObjects;
+    }
+    
     public Tile[][] getTiles(){
         return tiles;
     }
@@ -51,11 +65,17 @@ public class Level {
     public void render(){
         int offset_x = getXOffset();
         int offset_y = getYOffset();
+        
+        renderBackground();
         // vi tegner en del udefra mappet til at starte med, fordi map.render ikke kan tegne pixels, men tiles.
         map.render(-(offset_x%32),-(offset_y%32), offset_x/32, offset_y/32 ,33,19);
         
         for(Character c : characters){
             c.render(offset_x, offset_y);
+        }
+        
+        for(LevelObject obj : levelObjects){
+            obj.render(offset_x, offset_y);
         }
     }
     
@@ -136,5 +156,30 @@ public class Level {
         }
         
         return offset_y;
+    }
+    
+    private void renderBackground(){
+        //først finder vi ud af hvor meget vi kan scrolle vores baggrund i forhold til skærmens størrelse.
+        float backgroundXScrollValue = (background.getWidth()-PlatformerGame.WINDOW_WIDTH/PlatformerGame.SCALE);
+        float backgroundYScrollValue = (background.getHeight()-PlatformerGame.WINDOW_HEIGHT/PlatformerGame.SCALE);
+        
+        // vi gør det samme for mappet
+        float mapXScrollValue = ((float)map.getWidth()*32-PlatformerGame.WINDOW_WIDTH/PlatformerGame.SCALE);
+        float mapYScrollValue = ((float)map.getWidth()*32-PlatformerGame.WINDOW_HEIGHT/PlatformerGame.SCALE);
+        
+        // så finder vi ud af hvilken faktor vi skal tegne baggrunden med så den passer med mappet og skærmen
+        float scrollXFactor = backgroundXScrollValue/mapXScrollValue * -1;
+        float scrollYFactor = backgroundYScrollValue/mapYScrollValue * -1;
+        
+        // og så tegner vi baggrunden med offset
+        background.draw(this.getXOffset()*scrollXFactor, this.getYOffset()*scrollYFactor);
+    }
+    
+    public void removeObject(LevelObject obj){
+        levelObjects.remove(obj);
+    }
+    
+    public void removeObjects(ArrayList<LevelObject> objects){
+        levelObjects.removeAll(objects);
     }
 }

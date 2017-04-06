@@ -18,6 +18,7 @@ public class PlatformerGame extends StateBasedGame {
     public static final int WINDOW_WIDTH = 1280;
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 16 * 9;
     public static final boolean FULLSCREEN = false;
+    public static int SCRAPS_COLLECTED = 0;
     
     /*
     1280x720 er standarden, derfor skalerer vi tiles der er 32x32 store, men vi vil gerne have dem til at være

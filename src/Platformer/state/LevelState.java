@@ -10,6 +10,7 @@ import Platformer.character.Player;
 import Platformer.controller.MouseAndKeyBoardPlayerController;
 import Platformer.controller.PlayerController;
 import Platformer.level.Level;
+import Platformer.level.Objective;
 import Platformer.physics.Physics;
 
 import org.newdawn.slick.GameContainer;
@@ -41,13 +42,18 @@ public class LevelState extends BasicGameState{
         player = new Player(128, 415);
         level = new Level(startingLevel, player);
         
+        level.addLevelObject(new Objective(128, 315));
+        level.addLevelObject(new Objective(528, 280));
+        level.addLevelObject(new Objective(328, 615));
+        
+        
         playerController = new MouseAndKeyBoardPlayerController(player);
         physics = new Physics();
     }
     
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException{
         playerController.handleInput(container.getInput(), delta);
-        physics.handePhysics(level, delta);
+        physics.handlePhysics(level, delta);
     }
     
     public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException{
