@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" nextobjectid="35">
  <properties>
   <property name="background" value="grassy_field.png"/>
  </properties>
@@ -16,4 +16,16 @@
    H4sIAAAAAAAAC+2W3QqAIAxGl0p/1vu/bl4kyJhskpCrXRzEL5EdQZcHAG8YxueJiV0pW+GxJialLOYxFOYxFn/3ODvW4AT09sj1B5Rz85a9MAGt5zxmwbkcaMR5bd6yF7eO89DCVz0c4fH2fxJHJByevFcjUN4VrR74vmv0oN6skT1ONNYcJB5c3659p3JplgnFGG4HEHh4qPcgrkdJcmlG9T+ujrd7QW8uBW43hIgTAAA=
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" height="1" width="1">
+  <object id="9" name="Objective" type="Objective" x="193" y="417" width="32" height="32"/>
+  <object id="14" name="Objective" type="Objective" x="737" y="416" width="32" height="32"/>
+  <object id="27" name="Objective" type="Objective" x="1127" y="243" width="32" height="32"/>
+  <object id="28" name="Objective" type="Objective" x="1460" y="368" width="32" height="32"/>
+  <object id="29" name="Objective" type="Objective" x="1022" y="626" width="32" height="32"/>
+  <object id="30" name="Objective" type="Objective" x="479" y="633" width="32" height="32"/>
+  <object id="31" name="Objective" type="Objective" x="247" y="634" width="32" height="32"/>
+  <object id="32" name="Objective" type="Objective" x="447" y="306" width="32" height="32"/>
+  <object id="33" name="Objective" type="Objective" x="278" y="234" width="32" height="32"/>
+  <object id="34" name="Objective" type="Objective" x="609" y="305" width="32" height="32"/>
+ </objectgroup>
 </map>

@@ -41,12 +41,7 @@ public class LevelState extends BasicGameState{
         
         player = new Player(128, 415);
         level = new Level(startingLevel, player);
-        
-        level.addLevelObject(new Objective(128, 315));
-        level.addLevelObject(new Objective(528, 280));
-        level.addLevelObject(new Objective(328, 615));
-        
-        
+
         playerController = new MouseAndKeyBoardPlayerController(player);
         physics = new Physics();
     }
