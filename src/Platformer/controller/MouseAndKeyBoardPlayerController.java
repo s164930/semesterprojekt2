@@ -31,7 +31,7 @@ public class MouseAndKeyBoardPlayerController extends PlayerController{
             player.setMoving(false);
         }
         
-        if(i.isKeyDown(Input.KEY_SPACE)){
+        if(i.isKeyDown(Input.KEY_SPACE) || i.isKeyDown(Input.KEY_UP) || i.isKeyDown(Input.KEY_W)){
             player.jump();
         }
     }

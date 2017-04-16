@@ -19,6 +19,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 /**
  *
  * @author vikto
@@ -33,6 +35,8 @@ public class LevelState extends BasicGameState{
     
     private Physics physics;
     
+    Input input;
+    
     public LevelState(String startingLevel){
         this.startingLevel = startingLevel;
     }
@@ -41,12 +45,7 @@ public class LevelState extends BasicGameState{
         
         player = new Player(128, 415);
         level = new Level(startingLevel, player);
-        
-        level.addLevelObject(new Objective(128, 315));
-        level.addLevelObject(new Objective(528, 280));
-        level.addLevelObject(new Objective(328, 615));
-        
-        
+
         playerController = new MouseAndKeyBoardPlayerController(player);
         physics = new Physics();
     }
@@ -54,6 +53,10 @@ public class LevelState extends BasicGameState{
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException{
         playerController.handleInput(container.getInput(), delta);
         physics.handlePhysics(level, delta);
+        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            sbg.enterState(PlatformerGame.MAINMENU, new FadeOutTransition(), new FadeInTransition());
+        }
+
     }
     
     public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException{
@@ -61,14 +64,8 @@ public class LevelState extends BasicGameState{
         level.render();
     }
     
-    public void keyPressed(int key, char code){
-        if(key == Input.KEY_ESCAPE){
-            System.exit(0);
-        }
-    }
-    
     public int getID(){
-        return 0;
+        return 1;
     }
     
 }

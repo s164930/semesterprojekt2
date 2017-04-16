@@ -20,10 +20,15 @@ import Platformer.level.Objective;
  */
 public class Physics {
     private final float gravity = 0.0015f;
+    public int collected = 0;
     
     public void handlePhysics(Level level, int delta){
         handleCharacters(level,delta);
         handleLevelObjects(level, delta);
+    }
+    
+    public int getCollected(){
+        return collected;
     }
     
     private boolean checkCollision(LevelObject obj, Tile[][] mapTiles){
@@ -73,7 +78,7 @@ public class Physics {
                     
                     if(obj instanceof Objective){
                         if(obj.getBoundingShape().checkCollision(c.getBoundingShape())){
-                            PlatformerGame.SCRAPS_COLLECTED++;
+                            collected++;
                             removeQueue.add(obj);
                         }
                     }

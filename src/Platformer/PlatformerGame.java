@@ -3,6 +3,7 @@ package Platformer;
 import Platformer.level.Level;
 import Platformer.state.LevelState;
 import Platformer.character.Character;
+import Platformer.state.MainMenu;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -13,12 +14,14 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author vikto
  */
 public class PlatformerGame extends StateBasedGame {
+    public static final int MAINMENU = 0;
+    public static final int LEVEL = 1;
     
     // sætter vindue størrelsen og højden i forhold til aspect ratio af skærmen
     public static final int WINDOW_WIDTH = 1280;
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 16 * 9;
     public static final boolean FULLSCREEN = false;
-    public static int SCRAPS_COLLECTED = 0;
+    public static String startingLevel = "level_0";
     
     /*
     1280x720 er standarden, derfor skalerer vi tiles der er 32x32 store, men vi vil gerne have dem til at være
@@ -32,8 +35,9 @@ public class PlatformerGame extends StateBasedGame {
     }
 
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new LevelState("level_0"));
-        this.enterState(0);
+        this.addState(new MainMenu());
+        this.addState(new LevelState(startingLevel));
+        this.enterState(MAINMENU);
     }
     
     public static void main(String[] args) throws SlickException{
@@ -44,6 +48,10 @@ public class PlatformerGame extends StateBasedGame {
         app.setTargetFrameRate(60);
         
         app.start();
+    }
+    
+    public void enterNewState(int STATE){
+        this.enterState(STATE);
     }
     
 }
