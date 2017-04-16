@@ -62,6 +62,10 @@ public class Level {
     public Tile[][] getTiles() {
         return tiles;
     }
+    
+    public int getNumberOfObjects(){
+        return map.getObjectCount(0);
+    }
 
     public void render() {
         int offset_x = getXOffset();

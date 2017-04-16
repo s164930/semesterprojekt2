@@ -56,6 +56,9 @@ public class LevelState extends BasicGameState{
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
             sbg.enterState(PlatformerGame.MAINMENU, new FadeOutTransition(), new FadeInTransition());
         }
+        if(physics.getCollected() >= level.getNumberOfObjects()){
+            sbg.enterState(PlatformerGame.MAINMENU, new FadeOutTransition(), new FadeInTransition());
+        }
 
     }
     

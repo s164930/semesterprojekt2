@@ -21,6 +21,7 @@ public class PlatformerGame extends StateBasedGame {
     public static final int WINDOW_WIDTH = 1280;
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 16 * 9;
     public static final boolean FULLSCREEN = false;
+    public static final boolean FPS = true;
     public static String startingLevel = "level_0";
     
     /*
@@ -50,8 +51,5 @@ public class PlatformerGame extends StateBasedGame {
         app.start();
     }
     
-    public void enterNewState(int STATE){
-        this.enterState(STATE);
-    }
     
 }
