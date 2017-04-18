@@ -21,7 +21,7 @@ public class PlatformerGame extends StateBasedGame {
     public static final int WINDOW_WIDTH = 1280;
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 16 * 9;
     public static final boolean FULLSCREEN = false;
-    public static final boolean FPS = true;
+    public static final boolean FPS = false;
     public static String startingLevel = "level_0";
     
     /*
@@ -47,6 +47,7 @@ public class PlatformerGame extends StateBasedGame {
         app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, FULLSCREEN);
         
         app.setTargetFrameRate(60);
+        app.setShowFPS(FPS);
         
         app.start();
     }
