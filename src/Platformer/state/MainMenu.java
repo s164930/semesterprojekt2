@@ -85,6 +85,7 @@ public class MainMenu extends BasicGameState{
                     exit = true;
                     break;
                 case START:
+                    sbg.getState(PlatformerGame.LEVEL).init(gc, sbg);
                     sbg.enterState(PlatformerGame.LEVEL, new FadeOutTransition(), new FadeInTransition());
                     break;
             }

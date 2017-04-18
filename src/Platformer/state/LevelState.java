@@ -29,6 +29,7 @@ public class LevelState extends BasicGameState{
     
     Level level;
     String startingLevel;
+    int ID;
     
     private Player player;
     private PlayerController playerController;
@@ -37,8 +38,9 @@ public class LevelState extends BasicGameState{
     
     Input input;
     
-    public LevelState(String startingLevel){
+    public LevelState(String startingLevel, int ID){
         this.startingLevel = startingLevel;
+        this.ID = ID;
     }
     
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
@@ -57,8 +59,10 @@ public class LevelState extends BasicGameState{
             sbg.enterState(PlatformerGame.MAINMENU, new FadeOutTransition(), new FadeInTransition());
         }
         if(physics.getCollected() >= level.getNumberOfObjects()){
+            
             sbg.enterState(PlatformerGame.MAINMENU, new FadeOutTransition(), new FadeInTransition());
         }
+        
 
     }
     
@@ -68,7 +72,7 @@ public class LevelState extends BasicGameState{
     }
     
     public int getID(){
-        return 1;
+        return ID;
     }
     
 }
