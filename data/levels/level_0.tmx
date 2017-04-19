@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" nextobjectid="35">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" nextobjectid="46">
  <properties>
   <property name="background" value="grassy_field.png"/>
  </properties>
@@ -19,5 +19,9 @@
  <objectgroup name="Object Layer 1" height="1" width="1">
   <object id="9" name="Objective" type="Objective" x="193" y="417" width="32" height="32"/>
   <object id="14" name="Objective" type="Objective" x="737" y="416" width="32" height="32"/>
+  <object id="42" name="Objective" type="Objective" x="1216" y="348" width="32" height="32"/>
+  <object id="43" name="Objective" type="Objective" x="1496" y="456" width="32" height="32"/>
+  <object id="44" name="Objective" type="Objective" x="800" y="644" width="32" height="32"/>
+  <object id="45" name="Objective" type="Objective" x="98" y="700" width="32" height="32"/>
  </objectgroup>
 </map>
