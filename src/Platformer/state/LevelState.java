@@ -29,7 +29,7 @@ public class LevelState extends BasicGameState{
     
     Level level;
     String startingLevel;
-    int ID;
+    int ID = 1;
     
     private Player player;
     private PlayerController playerController;
@@ -38,9 +38,8 @@ public class LevelState extends BasicGameState{
     
     Input input;
     
-    public LevelState(String startingLevel, int ID){
+    public LevelState(String startingLevel){
         this.startingLevel = startingLevel;
-        this.ID = ID;
     }
     
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {

@@ -37,7 +37,7 @@ public class PlatformerGame extends StateBasedGame {
 
     public void initStatesList(GameContainer gc) throws SlickException {
         this.addState(new MainMenu());
-        this.addState(new LevelState(startingLevel, 1));
+        this.addState(new LevelState(startingLevel));
         this.enterState(MAINMENU);
     }
     
